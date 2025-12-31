@@ -1,4 +1,6 @@
 {
     "clangd.path": "/usr/bin/clangd",
-    "cmake.sourceDirectory": "/home/lin/nuttxspace/nuttx",
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/nuttx/build"
+    ]
 }
