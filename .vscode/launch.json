@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "NuttX: Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/nuttx/build/nuttx",
+      "gdbPath": "gdb-multiarch",
+      "armToolchainPath": "/usr/bin",
+
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f1x.cfg"
+      ],
+      "openOCDLaunchCommands": [
+        "transport select swd",
+        "adapter speed 100"          // 可以自行调整频率
+      ],
+
+      "preLaunchCommands": [
+        "monitor reset halt"
+      ],
+
+      "runToEntryPoint": "nx_start"  // 在 nx_start 处设置一个断点
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+    "clangd.path": "/usr/bin/clangd",
+    "cmake.sourceDirectory": "/home/lin/nuttxspace/nuttx",
+}

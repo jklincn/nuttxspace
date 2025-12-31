@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "NuttX: Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/nuttx"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NuttX: Flash",
+      "type": "shell",
+      "command": "openocd",
+      "args": [
+        "-f",
+        "interface/stlink.cfg",
+        "-c",
+        "transport select swd",
+        "-f",
+        "target/stm32f1x.cfg",
+        "-c",
+        "adapter speed 100",    // 可以自行调整频率
+        "-c",
+        "init",
+        "-c",
+        "program build/nuttx verify reset",
+        "-c",
+        "shutdown"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/nuttx"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NuttX: Build + Flash",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "NuttX: Build",
+        "NuttX: Flash"
+      ],
+      "problemMatcher": [],
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      }
+    }
+  ]
+}
