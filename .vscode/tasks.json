@@ -26,7 +26,7 @@
         "-f",
         "target/stm32f1x.cfg",
         "-c",
-        "adapter speed 100",    // 可以自行调整频率
+        "adapter speed 240",    // 可以自行调整频率
         "-c",
         "init",
         "-c",
