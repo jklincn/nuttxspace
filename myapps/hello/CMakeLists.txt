@@ -1,7 +1,7 @@
 if(CONFIG_MY_APPS_HELLO)
   nuttx_add_application(
     NAME
-    my_hello
+    hello
     SRCS
     hello.c
     STACKSIZE
