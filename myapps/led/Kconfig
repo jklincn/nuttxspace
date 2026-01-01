@@ -1,0 +1,5 @@
+config MY_APPS_LED
+        tristate "LED"
+        default n
+        ---help---
+                Enable the My LED App

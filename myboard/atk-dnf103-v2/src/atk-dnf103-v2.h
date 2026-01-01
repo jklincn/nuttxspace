@@ -15,6 +15,14 @@
  * Pre-processor Definitions
  ****************************************************************************/
 
+#define GPIO_LED0                                                              \
+  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET |          \
+   GPIO_PORTB | GPIO_PIN5)
+
+#define GPIO_LED1                                                              \
+  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET |          \
+   GPIO_PORTE | GPIO_PIN5)
+
 /****************************************************************************
  * Public Function Prototypes
  ****************************************************************************/

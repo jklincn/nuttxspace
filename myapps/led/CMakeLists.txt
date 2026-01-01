@@ -1,0 +1,11 @@
+if(CONFIG_MY_APPS_LED)
+  nuttx_add_application(
+    NAME
+    led
+    SRCS
+    led.c
+    STACKSIZE
+    2048
+    PRIORITY
+    100)
+endif()
