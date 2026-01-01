@@ -1,0 +1,5 @@
+config MY_APPS_HELLO
+        tristate "Hello"
+        default n
+        ---help---
+                Enable the My Hello App
