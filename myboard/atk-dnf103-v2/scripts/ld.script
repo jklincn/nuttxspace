@@ -56,8 +56,6 @@ SECTIONS
 
     _eronly = LOADADDR(.data);
 
-    /* The STM32F103C8T6 has 20Kb of SRAM beginning at the following address */
-
     .data : ALIGN(4) {
         _sdata = ABSOLUTE(.);
         *(.data .data.*)
