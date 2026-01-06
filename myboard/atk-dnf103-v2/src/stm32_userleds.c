@@ -7,7 +7,6 @@
 
 #include "atk-dnf103-v2.h"
 #include "chip.h"
-#include "stm32.h"
 
 static const uint32_t g_ledcfg[BOARD_NLEDS] = {
     GPIO_LED0,

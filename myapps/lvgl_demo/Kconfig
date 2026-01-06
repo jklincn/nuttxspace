@@ -1,0 +1,5 @@
+config MY_APPS_LVGL_DEMO
+	tristate "LVGL Demo"
+	default n
+	---help---
+		Enable the LVGL Demo application

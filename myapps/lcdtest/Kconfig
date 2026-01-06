@@ -1,0 +1,5 @@
+config MY_APPS_LCDTEST
+	tristate "LCD Test"
+	default n
+	---help---
+		Enable the LCD test application
