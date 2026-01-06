@@ -8,3 +8,4 @@
 
 - [Stm32F103 + NuttX（四）：自定义板级配置与应用](https://jklincn.com/posts/stm32-nuttx-custom)
 
+- [Stm32F103 + NuttX（五）：点亮 LCD（FSMC 实现 8080 并口+LVGL）](https://jklincn.com/posts/stm32-nuttx-lcd)
