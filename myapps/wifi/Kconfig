@@ -1,0 +1,5 @@
+config MY_APPS_WIFI
+	tristate "Wifi"
+	default n
+	---help---
+		Enable the WIFI application

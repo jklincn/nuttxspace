@@ -12,6 +12,10 @@ if(CONFIG_LCD_DEV)
   list(APPEND SRCS stm32_lcd.c stm32_ili9341_fsmc.c)
 endif()
 
+if(CONFIG_NET)
+  list(APPEND SRCS stm32_network.c)
+endif()
+
 target_sources(board PRIVATE ${SRCS})
 
 set_property(GLOBAL PROPERTY LD_SCRIPT "${NUTTX_BOARD_DIR}/scripts/ld.script")
