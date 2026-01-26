@@ -16,6 +16,10 @@ if(CONFIG_NET)
   list(APPEND SRCS stm32_network.c)
 endif()
 
+if(CONFIG_SENSORS_DHTXX)
+  list(APPEND SRCS stm32_dht11.c)
+endif()
+
 target_sources(board PRIVATE ${SRCS})
 
 set_property(GLOBAL PROPERTY LD_SCRIPT "${NUTTX_BOARD_DIR}/scripts/ld.script")

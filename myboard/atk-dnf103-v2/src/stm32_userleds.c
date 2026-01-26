@@ -5,9 +5,16 @@
 
 #include <arch/board/board.h>
 
-#include "atk-dnf103-v2.h"
 #include "chip.h"
 
+#define GPIO_LED0                                                              \
+  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET |          \
+   GPIO_PORTB | GPIO_PIN5)
+
+#define GPIO_LED1                                                              \
+  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET |          \
+   GPIO_PORTE | GPIO_PIN5)
+   
 static const uint32_t g_ledcfg[BOARD_NLEDS] = {
     GPIO_LED0,
     GPIO_LED1,

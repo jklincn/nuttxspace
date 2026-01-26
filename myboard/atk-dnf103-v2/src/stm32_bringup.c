@@ -37,5 +37,12 @@ int stm32_bringup(void) {
     syslog(LOG_ERR, "ERROR: lcddev_register() failed: %d\n", ret);
   }
 #endif
+#ifdef CONFIG_SENSORS_DHTXX
+  /* Initialize DHT11 sensor */
+  ret = stm32_dht11_init();
+  if (ret < 0) {
+    syslog(LOG_ERR, "ERROR: stm32_dht11_init() failed: %d\n", ret);
+  }
+#endif
   return ret;
 }

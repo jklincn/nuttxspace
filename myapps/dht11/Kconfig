@@ -1,0 +1,5 @@
+config MY_APPS_DHT11
+	tristate "DHT11"
+	default n
+	---help---
+		Enable the DHT11 application
