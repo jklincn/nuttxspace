@@ -13,3 +13,9 @@
 - [Stm32F103 + NuttX（六）：连接 Wi-Fi（ESP8266+USART）](https://jklincn.com/posts/stm32-nuttx-esp8266)
 
 - [Stm32F103 + NuttX（七）：传感器与定时器](https://jklincn.com/posts/stm32-nuttx-dht11)
+
+源码克隆命令（自行将 `ch04` 修改成对应章节）
+
+```
+git clone --recursive -b series/ch04 https://github.com/jklincn/nuttxspace.git
+```
