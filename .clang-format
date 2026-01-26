@@ -1,0 +1,9 @@
+---
+BasedOnStyle: LLVM
+ColumnLimit: 100
+AlignEscapedNewlines: Left
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+...

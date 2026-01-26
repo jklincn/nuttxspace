@@ -19,45 +19,40 @@ uint16_t g_lcd_id = 0;
  * So HADDR[11] maps to FSMC_A10.
  * Offset = 1 << 11 = 0x800.
  */
-#define LCD_CMD (*(volatile uint16_t *)(LCD_BASE))
+#define LCD_CMD  (*(volatile uint16_t *)(LCD_BASE))
 #define LCD_DATA (*(volatile uint16_t *)(LCD_BASE + 0x800))
 
-#define GPIO_LCD_BACKLIGHT                                                     \
-  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET |          \
-   GPIO_PORTB | GPIO_PIN0)
+#define GPIO_LCD_BACKLIGHT \
+  (GPIO_OUTPUT | GPIO_CNF_OUTPP | GPIO_MODE_50MHz | GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN0)
 
 static void stm32_ili9341_select(FAR struct ili9341_lcd_s *lcd) {}
 
 static void stm32_ili9341_deselect(FAR struct ili9341_lcd_s *lcd) {}
 
-static int stm32_ili9341_sendcmd(FAR struct ili9341_lcd_s *lcd,
-                                 const uint8_t cmd) {
+static int stm32_ili9341_sendcmd(FAR struct ili9341_lcd_s *lcd, const uint8_t cmd) {
   LCD_CMD = cmd;
   return OK;
 }
 
-static int stm32_ili9341_sendparam(FAR struct ili9341_lcd_s *lcd,
-                                   const uint8_t param) {
+static int stm32_ili9341_sendparam(FAR struct ili9341_lcd_s *lcd, const uint8_t param) {
   LCD_DATA = param;
   return OK;
 }
 
-static int stm32_ili9341_recvparam(FAR struct ili9341_lcd_s *lcd,
-                                   uint8_t *param) {
+static int stm32_ili9341_recvparam(FAR struct ili9341_lcd_s *lcd, uint8_t *param) {
   *param = LCD_DATA;
   return OK;
 }
 
-static int stm32_ili9341_sendgram(FAR struct ili9341_lcd_s *lcd,
-                                  const uint16_t *wd, uint32_t nwords) {
+static int stm32_ili9341_sendgram(FAR struct ili9341_lcd_s *lcd, const uint16_t *wd,
+                                  uint32_t nwords) {
   while (nwords--) {
     LCD_DATA = *wd++;
   }
   return OK;
 }
 
-static int stm32_ili9341_recvgram(FAR struct ili9341_lcd_s *lcd, uint16_t *wd,
-                                  uint32_t nwords) {
+static int stm32_ili9341_recvgram(FAR struct ili9341_lcd_s *lcd, uint16_t *wd, uint32_t nwords) {
   while (nwords--) {
     *wd++ = LCD_DATA;
   }
@@ -210,11 +205,10 @@ void stm32_fsmc_init(void) {
   // Configure FSMC GPIO
 
   static const uint32_t g_lcd_pins[] = {
-      GPIO_NPS_NE4_0, GPIO_NPS_A10_0, GPIO_NPS_NOE_0, GPIO_NPS_NWE_0,
-      GPIO_NPS_D0_0,  GPIO_NPS_D1_0,  GPIO_NPS_D2_0,  GPIO_NPS_D3_0,
-      GPIO_NPS_D4_0,  GPIO_NPS_D5_0,  GPIO_NPS_D6_0,  GPIO_NPS_D7_0,
-      GPIO_NPS_D8_0,  GPIO_NPS_D9_0,  GPIO_NPS_D10_0, GPIO_NPS_D11_0,
-      GPIO_NPS_D12_0, GPIO_NPS_D13_0, GPIO_NPS_D14_0, GPIO_NPS_D15_0};
+      GPIO_NPS_NE4_0, GPIO_NPS_A10_0, GPIO_NPS_NOE_0, GPIO_NPS_NWE_0, GPIO_NPS_D0_0,
+      GPIO_NPS_D1_0,  GPIO_NPS_D2_0,  GPIO_NPS_D3_0,  GPIO_NPS_D4_0,  GPIO_NPS_D5_0,
+      GPIO_NPS_D6_0,  GPIO_NPS_D7_0,  GPIO_NPS_D8_0,  GPIO_NPS_D9_0,  GPIO_NPS_D10_0,
+      GPIO_NPS_D11_0, GPIO_NPS_D12_0, GPIO_NPS_D13_0, GPIO_NPS_D14_0, GPIO_NPS_D15_0};
 
   // Configure GPIOs
   for (int i = 0; i < sizeof(g_lcd_pins) / sizeof(uint32_t); i++) {
@@ -228,20 +222,16 @@ void stm32_fsmc_init(void) {
   stm32_fsmc_enable();
 
   // Configure BCR4 (DO NOT enable bank yet)
-  putreg32(FSMC_BCR_SRAM | FSMC_BCR_MWID16 | FSMC_BCR_WREN | FSMC_BCR_EXTMOD,
-           STM32_FSMC_BCR4);
+  putreg32(FSMC_BCR_SRAM | FSMC_BCR_MWID16 | FSMC_BCR_WREN | FSMC_BCR_EXTMOD, STM32_FSMC_BCR4);
 
   // Configure READ timing (BTR4)
-  putreg32(FSMC_BTR_ADDSET(1) | FSMC_BTR_DATAST(16) | FSMC_BTR_ACCMODA,
-           STM32_FSMC_BTR4);
+  putreg32(FSMC_BTR_ADDSET(1) | FSMC_BTR_DATAST(16) | FSMC_BTR_ACCMODA, STM32_FSMC_BTR4);
 
   // Configure WRITE timing (BWTR4)
-  putreg32(FSMC_BTR_ADDSET(1) | FSMC_BTR_DATAST(2) | FSMC_BTR_ACCMODA,
-           STM32_FSMC_BWTR4);
+  putreg32(FSMC_BTR_ADDSET(1) | FSMC_BTR_DATAST(2) | FSMC_BTR_ACCMODA, STM32_FSMC_BWTR4);
 
   // Enable the bank by setting the MBKEN bit
-  putreg32(FSMC_BCR_MBKEN | FSMC_BCR_SRAM | FSMC_BCR_MWID16 | FSMC_BCR_WREN |
-               FSMC_BCR_EXTMOD,
+  putreg32(FSMC_BCR_MBKEN | FSMC_BCR_SRAM | FSMC_BCR_MWID16 | FSMC_BCR_WREN | FSMC_BCR_EXTMOD,
            STM32_FSMC_BCR4);
 }
 

@@ -9,8 +9,8 @@
 #include "netutils/esp8266.h"
 
 static void print_ip(const char *label, in_addr_t ip) {
-  printf("[wifi] %s: %d.%d.%d.%d\n", label, (int)(ip & 0xff),
-         (int)((ip >> 8) & 0xff), (int)((ip >> 16) & 0xff), (int)(ip >> 24));
+  printf("[wifi] %s: %d.%d.%d.%d\n", label, (int)(ip & 0xff), (int)((ip >> 8) & 0xff),
+         (int)((ip >> 16) & 0xff), (int)(ip >> 24));
 }
 
 /* Scan callback */
@@ -128,8 +128,7 @@ static int cmd_test(void) {
   server_addr.sin_port = htons(443);
   server_addr.sin_addr.s_addr = target_ip;
 
-  if (lesp_connect(sockfd, (struct sockaddr *)&server_addr,
-                   sizeof(server_addr)) < 0) {
+  if (lesp_connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
     printf("[wifi] Connect failed.\n");
     lesp_closesocket(sockfd);
     return -1;

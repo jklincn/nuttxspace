@@ -29,8 +29,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  printf("Resolution: %d x %d, Format: %d\n", vinfo.xres, vinfo.yres,
-         vinfo.fmt);
+  printf("Resolution: %d x %d, Format: %d\n", vinfo.xres, vinfo.yres, vinfo.fmt);
 
   /* Allocate buffer for a chunk of lines (e.g., 10 lines) to save SRAM */
   int chunk_lines = 10;
